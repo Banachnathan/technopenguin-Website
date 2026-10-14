@@ -1,0 +1,14 @@
+:root{
+  --primary-color: #1A2E46;
+  --secondary-color: #5C7AA5;
+  --white: #FFFFFF;
+  
+  --font-montserrat: "Montserrat", sans-serif;
+  --title: 800 4rem var(--font-montserrat)
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
