@@ -6,7 +6,7 @@
 .main-nav > a:not(.button):hover { color: white; }
 .main-nav .button { min-height: 34px; padding-inline: 17px; font-size: .7rem; }
 .main-nav .button--solid { background: var(--primary-color); }
-.hero { min-height: 610px; padding: 126px 24px 110px; background: var(--primary-color) url("../imgs/bg-lp.jpg") center bottom / 100% auto no-repeat; }
+.hero { min-height: 720px; padding: 126px 24px 110px; background: var(--primary-color) url("../imgs/bg-lp.jpg") center bottom / 100% auto no-repeat; }
 .hero__inner { position: relative; width: min(100%, 1120px); min-height: 380px; display: flex; align-items: center; margin: auto; }
 .hero__copy { z-index: 1; width: min(56%, 610px); padding-bottom: 35px; }
 .eyebrow { margin: 0 0 12px; color: #9db2cc; font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
