@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
   --primary-color: #1a2e46;
   --secondary-color: #5c7aa5;
@@ -25,3 +26,19 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .button--primary:hover, .button--solid:hover { background: #7696c2; }
 .button--outline { border-color: #8da3bd; color: var(--white); }
 .button--outline:hover { background: #ffffff16; }
+=======
+:root{
+  --primary-color: #1A2E46;
+  --secondary-color: #5C7AA5;
+  --white: #FFFFFF;
+  
+  --font-montserrat: "Montserrat", sans-serif;
+  --title: 800 4rem var(--font-montserrat)
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+>>>>>>> c5ffbc0b875ee95b36c25646041957c60ddc5a4c
