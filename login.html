@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1a2e46">
+  <meta name="description" content="Acede à tua conta TechnoPenguin e continua a aprender programação.">
+  <title>Entrar — TechnoPenguin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body class="auth-page">
+  <main class="auth-layout">
+    <section class="auth-panel" aria-labelledby="auth-title">
+      <a class="auth-logo" href="index.html" aria-label="Voltar ao início TechnoPenguin">
+        <img src="assets/imgs/logo.svg" alt="TechnoPenguin">
+      </a>
+      <div class="auth-form-wrap">
+        <h1 id="auth-title">Entrar na sua conta</h1>
+        <p class="auth-intro">Continua de onde a tua aprendizagem parou.</p>
+        <form class="auth-form" id="auth-form">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Digite seu email" autocomplete="email" required>
+          <label for="password">Senha</label>
+          <input id="password" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password" required minlength="6">
+          <button class="auth-submit" type="submit">Entrar</button>
+          <p class="auth-feedback" id="auth-feedback" role="status" aria-live="polite"></p>
+        </form>
+        <p class="auth-switch">Ainda não tens uma conta? <a href="login.html?modo=cadastro">Criar conta</a></p>
+        <a class="back-home" href="index.html">← Voltar ao início</a>
+      </div>
+    </section>
+    <aside class="auth-art" aria-label="Teco, o pinguim, num cenário polar">
+      <img class="auth-art__image" src="assets/imgs/cenariopolar.png" alt="Teco sobre um iceberg sob a aurora boreal">
+      <a class="auth-art__logo" href="index.html" aria-label="TechnoPenguin — início">
+        <img src="assets/imgs/logo.svg" alt="TechnoPenguin">
+      </a>
+    </aside>
+  </main>
+  <script>
+    const authForm = document.querySelector('#auth-form');
+    const authFeedback = document.querySelector('#auth-feedback');
+    const authTitle = document.querySelector('#auth-title');
+    const authSubmit = document.querySelector('.auth-submit');
+    const authSwitch = document.querySelector('.auth-switch');
+    const passwordInput = document.querySelector('#password');
+    const isSignup = new URLSearchParams(location.search).get('modo') === 'cadastro';
+
+    if (isSignup) {
+      document.title = 'Criar conta — TechnoPenguin';
+      authTitle.textContent = 'Crie seu perfil';
+      authSubmit.textContent = 'Criar';
+      passwordInput.autocomplete = 'new-password';
+      const usernameLabel = document.createElement('label');
+      usernameLabel.htmlFor = 'username';
+      usernameLabel.textContent = 'Nome de usuário';
+      const usernameInput = document.createElement('input');
+      usernameInput.id = 'username';
+      usernameInput.name = 'username';
+      usernameInput.type = 'text';
+      usernameInput.placeholder = 'Digite seu nome de usuário';
+      usernameInput.autocomplete = 'username';
+      usernameInput.required = true;
+      authForm.prepend(usernameInput);
+      authForm.prepend(usernameLabel);
+
+      const confirmLabel = document.createElement('label');
+      confirmLabel.htmlFor = 'confirm-password';
+      confirmLabel.textContent = 'Confirmar senha';
+      const confirmInput = document.createElement('input');
+      confirmInput.id = 'confirm-password';
+      confirmInput.name = 'confirm-password';
+      confirmInput.type = 'password';
+      confirmInput.placeholder = 'Confirme sua senha';
+      confirmInput.autocomplete = 'new-password';
+      confirmInput.required = true;
+      confirmInput.minLength = 6;
+      authSubmit.before(confirmLabel, confirmInput);
+      authSwitch.innerHTML = 'Já tens uma conta? <a href="login.html">Entrar</a>';
+
+      confirmInput.addEventListener('input', () => {
+        confirmInput.setCustomValidity(confirmInput.value === passwordInput.value ? '' : 'As senhas não coincidem.');
+      });
+      passwordInput.addEventListener('input', () => {
+        confirmInput.setCustomValidity(confirmInput.value === passwordInput.value ? '' : 'As senhas não coincidem.');
+      });
+    }
+
+    authForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      authFeedback.textContent = isSignup
+        ? 'O formulário está pronto. A criação de conta precisa ser ligada a um serviço de autenticação.'
+        : 'O formulário está pronto. O acesso precisa ser ligado a um serviço de autenticação.';
+    });
+  </script>
+</body>
+</html>
