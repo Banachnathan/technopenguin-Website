@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,10 +9,12 @@
   <title>Entrar — TechnoPenguin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="assets/css/global.css">
   <link rel="stylesheet" href="assets/css/auth.css">
 </head>
+
 <body class="auth-page">
   <main class="auth-layout">
     <section class="auth-panel" aria-labelledby="auth-title">
@@ -21,15 +24,16 @@
       <div class="auth-form-wrap">
         <h1 id="auth-title">Entrar na sua conta</h1>
         <p class="auth-intro">Continua de onde a tua aprendizagem parou.</p>
-        
+
         <!-- O action começa apontando para o login, mas o JS vai alterar se for cadastro -->
         <form class="auth-form" id="auth-form" action="php/login.php" method="POST">
           <label for="email">Email</label>
           <input id="email" name="email" type="email" placeholder="Digite seu email" autocomplete="email" required>
-          
+
           <label for="password">Senha</label>
-          <input id="password" name="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password" required minlength="6">
-          
+          <input id="password" name="senha" type="password" placeholder="Digite sua senha"
+            autocomplete="current-password" required minlength="6">
+
           <button class="auth-submit" type="submit">Entrar</button>
           <p class="auth-feedback" id="auth-feedback" role="status" aria-live="polite"></p>
         </form>
@@ -106,4 +110,5 @@
     }
   </script>
 </body>
+
 </html>
