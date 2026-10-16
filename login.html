@@ -21,14 +21,19 @@
       <div class="auth-form-wrap">
         <h1 id="auth-title">Entrar na sua conta</h1>
         <p class="auth-intro">Continua de onde a tua aprendizagem parou.</p>
-        <form class="auth-form" id="auth-form">
+        
+        <!-- O action começa apontando para o login, mas o JS vai alterar se for cadastro -->
+        <form class="auth-form" id="auth-form" action="php/login.php" method="POST">
           <label for="email">Email</label>
           <input id="email" name="email" type="email" placeholder="Digite seu email" autocomplete="email" required>
+          
           <label for="password">Senha</label>
-          <input id="password" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password" required minlength="6">
+          <input id="password" name="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password" required minlength="6">
+          
           <button class="auth-submit" type="submit">Entrar</button>
           <p class="auth-feedback" id="auth-feedback" role="status" aria-live="polite"></p>
         </form>
+
         <p class="auth-switch">Ainda não tens uma conta? <a href="login.html?modo=cadastro">Criar conta</a></p>
         <a class="back-home" href="index.html">← Voltar ao início</a>
       </div>
@@ -40,6 +45,7 @@
       </a>
     </aside>
   </main>
+
   <script>
     const authForm = document.querySelector('#auth-form');
     const authFeedback = document.querySelector('#auth-feedback');
@@ -50,26 +56,32 @@
     const isSignup = new URLSearchParams(location.search).get('modo') === 'cadastro';
 
     if (isSignup) {
+      // Se for modo cadastro, altera os textos e o action do formulário para o cadastrar.php
       document.title = 'Criar conta — TechnoPenguin';
       authTitle.textContent = 'Crie seu perfil';
       authSubmit.textContent = 'Criar';
+      authForm.action = 'php/cadastrar.php'; // Aponta para o nosso PHP de cadastro!
       passwordInput.autocomplete = 'new-password';
+
       const usernameLabel = document.createElement('label');
       usernameLabel.htmlFor = 'username';
       usernameLabel.textContent = 'Nome de usuário';
+
       const usernameInput = document.createElement('input');
       usernameInput.id = 'username';
-      usernameInput.name = 'username';
+      usernameInput.name = 'nome'; // Nome exato esperado pela coluna 'nome' no banco
       usernameInput.type = 'text';
       usernameInput.placeholder = 'Digite seu nome de usuário';
       usernameInput.autocomplete = 'username';
       usernameInput.required = true;
+
       authForm.prepend(usernameInput);
       authForm.prepend(usernameLabel);
 
       const confirmLabel = document.createElement('label');
       confirmLabel.htmlFor = 'confirm-password';
       confirmLabel.textContent = 'Confirmar senha';
+
       const confirmInput = document.createElement('input');
       confirmInput.id = 'confirm-password';
       confirmInput.name = 'confirm-password';
@@ -78,6 +90,7 @@
       confirmInput.autocomplete = 'new-password';
       confirmInput.required = true;
       confirmInput.minLength = 6;
+
       authSubmit.before(confirmLabel, confirmInput);
       authSwitch.innerHTML = 'Já tens uma conta? <a href="login.html">Entrar</a>';
 
@@ -87,14 +100,10 @@
       passwordInput.addEventListener('input', () => {
         confirmInput.setCustomValidity(confirmInput.value === passwordInput.value ? '' : 'As senhas não coincidem.');
       });
+    } else {
+      // Se for login normal, garante que o action aponta para o login.php
+      authForm.action = 'php/login.php';
     }
-
-    authForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      authFeedback.textContent = isSignup
-        ? 'O formulário está pronto. A criação de conta precisa ser ligada a um serviço de autenticação.'
-        : 'O formulário está pronto. O acesso precisa ser ligado a um serviço de autenticação.';
-    });
   </script>
 </body>
 </html>
